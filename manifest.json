@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Fill Inputs By Type",
+  "description": "Fill inputs by type",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["activeTab", "scripting", "tabs"]
+}

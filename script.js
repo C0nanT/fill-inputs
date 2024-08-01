@@ -2,12 +2,282 @@ document
   .getElementById("meuBotao")
   .addEventListener("click", async function () {
     const fillInputs = () => {
+      function geraNumeroCartao() {
+        let numCartao = "";
+        for (let i = 0; i < 16; i++) {
+          numCartao += Math.floor(Math.random() * 10);
+        }
+        return numCartao;
+      }
+
+      function geraValidade() {
+        let mes = ("0" + Math.floor(Math.random() * 12 + 1)).slice(-2);
+        let ano = new Date().getFullYear() + Math.floor(Math.random() * 6) + 1;
+        return `${mes}/${ano.toString().slice(-2)}`;
+      }
+
+      function geraCVV() {
+        return Math.floor(100 + Math.random() * 900).toString();
+      }
+
+      function geraNome() {
+        const nomes = [
+          "Conan",
+          "Thiago",
+          "João",
+          "Silva",
+          "Maria",
+          "Souza",
+          "Pedro",
+          "Costa",
+          "Ana",
+          "Oliveira",
+          "Lucas",
+          "Pereira",
+          "Bjorn",
+        ];
+
+        function getNomeAleatorio() {
+          return nomes[Math.floor(Math.random() * nomes.length)];
+        }
+
+        const nomeCompleto = `${getNomeAleatorio()} ${getNomeAleatorio()}`;
+        return nomeCompleto;
+      }
+
+      function geraBandeira() {
+        const bandeiras = [
+          "Visa",
+          "MasterCard",
+          "American Express",
+          "Discover",
+          "Elo",
+          "Hipercard",
+        ];
+        return bandeiras[Math.floor(Math.random() * bandeiras.length)];
+      }
+
+      function geraParcelas() {
+        return Math.floor(Math.random() * 12 + 1).toString();
+      }
+
+      function geraMes() {
+        const mesAtual = new Date().getMonth() + 1;
+        return ("0" + mesAtual).slice(-2);
+      }
+
+      function geraAno() {
+        const anoAtual = new Date().getFullYear();
+        return (anoAtual + 1).toString();
+      }
+
+      function geraEmail() {
+        const dominios = [
+          "example.com",
+          "email.com",
+          "test.com",
+          "site.com",
+          "mail.com",
+          "dominio.com",
+          "brasil.com",
+        ];
+        const nome = geraNome().toLowerCase().replace(" ", ".");
+        const dominio = dominios[Math.floor(Math.random() * dominios.length)];
+        return `${nome}@${dominio}`;
+      }
+
+      function geraSenha() {
+        const caracteres =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+        let senha = "";
+        for (let i = 0; i < 10; i++) {
+          senha += caracteres.charAt(
+            Math.floor(Math.random() * caracteres.length)
+          );
+        }
+        return senha;
+      }
+
+      function geraQuantidade(input) {
+        if (isNaN(input) || input <= 0) {
+          return Math.floor(Math.random() * 100).toString();
+        } else {
+          return Math.floor(Math.random() * input + 1).toString();
+        }
+      }
+
+      function geraData() {
+        const dia = ("0" + Math.floor(Math.random() * 28 + 1)).slice(-2);
+        const mes = ("0" + Math.floor(Math.random() * 12 + 1)).slice(-2);
+        const ano = new Date().getFullYear();
+        return `${ano}-${mes}-${dia}`;
+      }
+
+      function geraTelefone() {
+        const ddd = Math.floor(Math.random() * 90 + 10).toString();
+        const numero = Math.floor(
+          Math.random() * 900000000 + 100000000
+        ).toString();
+        return `(${ddd}) ${numero.slice(0, 5)}-${numero.slice(5)}`;
+      }
+
+      function geraURL() {
+        const sites = [
+          "www.example.com",
+          "www.test.com",
+          "www.site.com",
+          "www.mail.com",
+          "www.dominio.com",
+          "www.brasil.com",
+        ];
+        return sites[Math.floor(Math.random() * sites.length)];
+      }
+
+      function geraRange(min, max) {
+        min = parseFloat(min);
+        max = parseFloat(max);
+
+        if (isNaN(min) || isNaN(max) || min >= max) {
+          return Math.floor(Math.random() * 10).toString();
+        } else {
+          return Math.floor(Math.random() * (max - min + 1) + min).toString();
+        }
+      }
+
+      function geraCor() {
+        return `#${Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .padStart(6, "0")}`;
+      }
+
+      function geraCEP() {
+        return `${Math.floor(Math.random() * 90000 + 10000)}-${Math.floor(
+          Math.random() * 900 + 100
+        )}`;
+      }
+
+      function geraCPF() {
+        let cpf = "";
+        for (let i = 0; i < 9; i++) {
+          cpf += Math.floor(Math.random() * 10);
+        }
+        let d1 = 0;
+        let d2 = 0;
+        for (let i = 0; i < 9; i++) {
+          d1 += cpf[i] * (10 - i);
+          d2 += cpf[i] * (11 - i);
+        }
+        d1 = 11 - (d1 % 11);
+        d1 = d1 >= 10 ? 0 : d1;
+        d2 += d1 * 2;
+        d2 = 11 - (d2 % 11);
+        d2 = d2 >= 10 ? 0 : d2;
+        return `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(
+          6,
+          9
+        )}-${d1}${d2}`;
+      }
+
+      function geraCNPJ() {
+        let cnpj = "";
+        for (let i = 0; i < 12; i++) {
+          cnpj += Math.floor(Math.random() * 10);
+        }
+        let d1 = 0;
+        let d2 = 0;
+        let peso = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        for (let i = 0; i < 12; i++) {
+          d1 += cnpj[i] * peso[i];
+        }
+        d1 = 11 - (d1 % 11);
+        d1 = d1 >= 10 ? 0 : d1;
+        peso = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        for (let i = 0; i < 12; i++) {
+          d2 += cnpj[i] * peso[i + 1];
+        }
+        d2 += d1 * peso[0];
+        d2 = 11 - (d2 % 11);
+        d2 = d2 >= 10 ? 0 : d2;
+        return `${cnpj.slice(0, 2)}.${cnpj.slice(2, 5)}.${cnpj.slice(
+          5,
+          8
+        )}/${cnpj.slice(8, 12)}-${d1}${d2}`;
+      }
+
+      function geraRG() {
+        let rg = "";
+        for (let i = 0; i < 9; i++) {
+          rg += Math.floor(Math.random() * 10);
+        }
+        return `${rg.slice(0, 2)}.${rg.slice(2, 5)}.${rg.slice(
+          5,
+          8
+        )}-${rg.slice(8, 9)}`;
+      }
+
+      function geraEstado() {
+        const estados = [
+          "AC",
+          "AL",
+          "AP",
+          "AM",
+          "BA",
+          "CE",
+          "DF",
+          "ES",
+          "GO",
+          "MA",
+          "MT",
+          "MS",
+          "MG",
+          "PA",
+          "PB",
+          "PR",
+          "PE",
+          "PI",
+          "RJ",
+          "RN",
+          "RS",
+          "RO",
+          "RR",
+          "SC",
+          "SP",
+          "SE",
+          "TO",
+        ];
+        return estados[Math.floor(Math.random() * estados.length)];
+      }
+
+      function geraNumero() {
+        return Math.floor(Math.random() * 10000 + 1).toString();
+      }
+
+      function geraTexto() {
+        const palavras = [
+          "lorem",
+          "ipsum",
+          "dolor",
+          "sit",
+          "amet",
+          "consectetur",
+          "adipiscing",
+          "elit",
+        ];
+
+        function palavraAleatoria() {
+          return palavras[Math.floor(Math.random() * palavras.length)];
+        }
+
+        return [palavraAleatoria(), palavraAleatoria()].join(" ");
+      }
+
       const inputs = document.querySelectorAll("input");
       const selects = document.querySelectorAll("select");
 
       selects.forEach((select) => {
         if (select.options.length > 0) {
-          select.selectedIndex = 0;
+          const randomIndex = Math.floor(Math.random() * select.options.length);
+          select.selectedIndex = randomIndex;
         }
       });
 
@@ -28,8 +298,7 @@ document
             input.placeholder.toLowerCase().includes("numero") ||
             input.placeholder.toLowerCase().includes("number")
           ) {
-            input.value = "1234 5678 1234 5678";
-            //TODO geraNumeroCartao();
+            input.value = geraNumeroCartao();
           } else if (
             input.id.toLowerCase().includes("validade") ||
             input.id.toLowerCase().includes("validity") ||
@@ -38,15 +307,13 @@ document
             input.placeholder.toLowerCase().includes("validade") ||
             input.placeholder.toLowerCase().includes("validity")
           ) {
-            input.value = "12/23";
-            // TODO geraValidade();
+            input.value = geraValidade();
           } else if (
             input.id.toLowerCase().includes("cvv") ||
             input.name.toLowerCase().includes("cvv") ||
             input.placeholder.toLowerCase().includes("cvv")
           ) {
-            input.value = "123";
-            // TODO geraCVV();
+            input.value = geraCVV();
           } else if (
             input.id.toLowerCase().includes("nome") ||
             input.id.toLowerCase().includes("name") ||
@@ -55,8 +322,7 @@ document
             input.placeholder.toLowerCase().includes("nome") ||
             input.placeholder.toLowerCase().includes("name")
           ) {
-            input.value = "Fulano de Tal";
-            // TODO geraNome();
+            input.value = geraNome();
           } else if (
             input.id.toLowerCase().includes("bandeira") ||
             input.id.toLowerCase().includes("flag") ||
@@ -65,8 +331,7 @@ document
             input.placeholder.toLowerCase().includes("bandeira") ||
             input.placeholder.toLowerCase().includes("flag")
           ) {
-            input.value = "Visa";
-            // TODO geraBandeira();
+            input.value = geraBandeira();
           } else if (
             input.id.toLowerCase().includes("parcelas") ||
             input.id.toLowerCase().includes("installments") ||
@@ -75,15 +340,34 @@ document
             input.placeholder.toLowerCase().includes("parcelas") ||
             input.placeholder.toLowerCase().includes("installments")
           ) {
-            input.value = 12;
-            // TODO geraParcelas();
+            input.value = geraParcelas();
           } else if (
             input.id.toLowerCase().includes("cvv") ||
+            input.id.toLowerCase().includes("csc") ||
             input.name.toLowerCase().includes("cvv") ||
-            input.placeholder.toLowerCase().includes("cvv")
+            input.name.toLowerCase().includes("csc") ||
+            input.placeholder.toLowerCase().includes("cvv") ||
+            input.placeholder.toLowerCase().includes("csc")
           ) {
-            input.value = "123";
-            // TODO geraCVV();
+            input.value = geraCVV();
+          } else if (
+            input.id.toLowerCase().includes("mes") ||
+            input.id.toLowerCase().includes("month") ||
+            input.name.toLowerCase().includes("mes") ||
+            input.name.toLowerCase().includes("month") ||
+            input.placeholder.toLowerCase().includes("mes") ||
+            input.placeholder.toLowerCase().includes("month")
+          ) {
+            input.value = geraMes();
+          } else if (
+            input.id.toLowerCase().includes("ano") ||
+            input.id.toLowerCase().includes("year") ||
+            input.name.toLowerCase().includes("ano") ||
+            input.name.toLowerCase().includes("year") ||
+            input.placeholder.toLowerCase().includes("ano") ||
+            input.placeholder.toLowerCase().includes("year")
+          ) {
+            input.value = geraAno();
           }
         } else if (
           input.id.toLowerCase().includes("email") ||
@@ -91,8 +375,7 @@ document
           input.placeholder.toLowerCase().includes("email") ||
           input.type === "email"
         ) {
-          input.value = "exemplo@dominio.com";
-          // TODO geraEmail();
+          input.value = geraEmail();
         } else if (
           input.id.toLowerCase().includes("senha") ||
           input.id.toLowerCase().includes("password") ||
@@ -102,8 +385,7 @@ document
           input.placeholder.toLowerCase().includes("password") ||
           input.type === "password"
         ) {
-          input.value = "senha123";
-          // TODO geraSenha();
+          input.value = geraSenha();
         } else if (
           input.id.toLowerCase().includes("quantidade") ||
           input.id.toLowerCase().includes("amount") ||
@@ -125,8 +407,7 @@ document
           input.placeholder.toLowerCase().includes("number") ||
           input.type === "number"
         ) {
-          input.value = 123;
-          // TODO geraQuantidade(input.maxLength)
+          input.value = geraQuantidade(input.maxLength);
         } else if (
           input.id.toLowerCase().includes("date") ||
           input.id.toLowerCase().includes("data") ||
@@ -136,8 +417,7 @@ document
           input.placeholder.toLowerCase().includes("data") ||
           input.type === "date"
         ) {
-          input.value = "2023-01-01";
-          // TODO geraData();
+          input.value = geraData();
         } else if (
           input.id.toLowerCase().includes("telefone") ||
           input.id.toLowerCase().includes("tel") ||
@@ -147,8 +427,7 @@ document
           input.placeholder.toLowerCase().includes("tel") ||
           input.type === "tel"
         ) {
-          input.value = "+55 11 1234-5678";
-          // TODO geraTelefone();
+          input.value = geraTelefone();
         } else if (
           input.id.toLowerCase().includes("url") ||
           input.id.toLowerCase().includes("link") ||
@@ -158,8 +437,7 @@ document
           input.placeholder.toLowerCase().includes("link") ||
           input.type === "url"
         ) {
-          input.value = "https://www.exemplo.com";
-          // TODO geraURL();
+          input.value = geraURL();
         } else if (
           input.id.toLowerCase().includes("checkbox") ||
           input.name.toLowerCase().includes("checkbox") ||
@@ -180,8 +458,7 @@ document
           input.placeholder.toLowerCase().includes("range") ||
           input.type === "range"
         ) {
-          input.value = 50;
-          // TODO geraRange(input.max, input.min);
+          input.value = geraRange(input.min, input.max);
         } else if (
           input.id.toLowerCase().includes("color") ||
           input.id.toLowerCase().includes("cor") ||
@@ -191,8 +468,7 @@ document
           input.placeholder.toLowerCase().includes("cor") ||
           input.type === "color"
         ) {
-          input.value = "#ff0000";
-          // TODO geraCor();
+          input.value = geraCor();
         } else if (input.type === "text") {
           if (
             input.id.toLowerCase().includes("cep") ||
@@ -205,29 +481,25 @@ document
             input.placeholder.toLowerCase().includes("zip") ||
             input.placeholder.toLowerCase().includes("postal")
           ) {
-            input.value = "88070-150";
-            // TODO geraCEP();
+            input.value = geraCEP();
           } else if (
             input.id.toLowerCase().includes("cpf") ||
             input.name.toLowerCase().includes("cpf") ||
             input.placeholder.toLowerCase().includes("cpf")
           ) {
-            input.value = "123.456.789-09";
-            // TODO geraCPF();
+            input.value = geraCPF();
           } else if (
             input.id.toLowerCase().includes("cnpj") ||
             input.name.toLowerCase().includes("cnpj") ||
             input.placeholder.toLowerCase().includes("cnpj")
           ) {
-            input.value = "12.345.678/0001-01";
-            // TODO geraCNPJ();
+            input.value = geraCNPJ();
           } else if (
             input.id.toLowerCase().includes("rg") ||
             input.name.toLowerCase().includes("rg") ||
             input.placeholder.toLowerCase().includes("rg")
           ) {
-            input.value = "12.345.678-9";
-            // TODO geraRG();
+            input.value = geraRG();
           } else if (
             input.id.toLowerCase().includes("estado") ||
             input.id.toLowerCase().includes("uf") ||
@@ -239,11 +511,9 @@ document
             input.placeholder.toLowerCase().includes("uf") ||
             input.placeholder.toLowerCase().includes("state")
           ) {
-            input.value = "SC";
-            // TODO geraEstado();
+            input.value = geraEstado();
           } else {
-            input.value = "lorem ipsum";
-            // TODO geraNumero();
+            input.value = geraTexto();
           }
         } else {
           input.value = "Se ta lendo isso é pq deu merda, arruma ai";

@@ -1,9 +1,10 @@
-Otimize sua produtividade com nossa extensão de navegador que preenche automaticamente os campos dos formulários na página. Utilizando identificadores precisos como ID, Name, Placeholder e Type, nossa ferramenta garante precisão e eficiência ao lidar com formulários complexos. Perfeito para profissionais que buscam agilidade e precisão em suas tarefas diárias.
+Optimize your productivity with our browser extension that automatically fills out form fields on the page. Using precise identifiers such as ID, Name, Placeholder, and Type, our tool ensures accuracy and efficiency when handling complex forms. Perfect for professionals seeking speed and precision in their daily tasks.
 
-Principais Recursos:
+Key Features:
 
-Preenchimento automático baseado em ID, Name, Placeholder ou Type dos inputs.
-Maior precisão na identificação e preenchimento dos campos do formulário.
-Ideal para formulários complexos e repetitivos.
-Simples de usar e altamente eficiente.
-Simplifique sua vida e economize tempo com nossa extensão de preenchimento automático de formulários!
+Automatic filling based on ID, Name, Placeholder, or Type of inputs.
+Increased accuracy in identifying and filling out form fields.
+Ideal for complex and repetitive forms.
+Simple to use and highly efficient.
+Simplify your life and save time with our automatic form filling extension!
+

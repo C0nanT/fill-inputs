@@ -516,7 +516,7 @@ document
             input.value = geraTexto();
           }
         } else {
-          input.value = "Se ta lendo isso é pq deu merda, arruma ai";
+          input.value = geraTexto();
         }
       });
     };

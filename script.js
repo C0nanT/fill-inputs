@@ -3,9 +3,89 @@ document
   .addEventListener("click", async function () {
     const fillInputs = () => {
       const inputs = document.querySelectorAll("input");
+      const selects = document.querySelectorAll("select");
+
+      selects.forEach((select) => {
+        if (select.options.length > 0) {
+          select.selectedIndex = 0;
+        }
+      });
 
       inputs.forEach((input) => {
         if (
+          input.id.toLowerCase().includes("cartao") ||
+          input.id.toLowerCase().includes("card") ||
+          input.name.toLowerCase().includes("cartao") ||
+          input.name.toLowerCase().includes("card") ||
+          input.placeholder.toLowerCase().includes("cartao") ||
+          input.placeholder.toLowerCase().includes("card")
+        ) {
+          if (
+            input.id.toLowerCase().includes("numero") ||
+            input.id.toLowerCase().includes("number") ||
+            input.name.toLowerCase().includes("numero") ||
+            input.name.toLowerCase().includes("number") ||
+            input.placeholder.toLowerCase().includes("numero") ||
+            input.placeholder.toLowerCase().includes("number")
+          ) {
+            input.value = "1234 5678 1234 5678";
+            //TODO geraNumeroCartao();
+          } else if (
+            input.id.toLowerCase().includes("validade") ||
+            input.id.toLowerCase().includes("validity") ||
+            input.name.toLowerCase().includes("validade") ||
+            input.name.toLowerCase().includes("validity") ||
+            input.placeholder.toLowerCase().includes("validade") ||
+            input.placeholder.toLowerCase().includes("validity")
+          ) {
+            input.value = "12/23";
+            // TODO geraValidade();
+          } else if (
+            input.id.toLowerCase().includes("cvv") ||
+            input.name.toLowerCase().includes("cvv") ||
+            input.placeholder.toLowerCase().includes("cvv")
+          ) {
+            input.value = "123";
+            // TODO geraCVV();
+          } else if (
+            input.id.toLowerCase().includes("nome") ||
+            input.id.toLowerCase().includes("name") ||
+            input.name.toLowerCase().includes("nome") ||
+            input.name.toLowerCase().includes("name") ||
+            input.placeholder.toLowerCase().includes("nome") ||
+            input.placeholder.toLowerCase().includes("name")
+          ) {
+            input.value = "Fulano de Tal";
+            // TODO geraNome();
+          } else if (
+            input.id.toLowerCase().includes("bandeira") ||
+            input.id.toLowerCase().includes("flag") ||
+            input.name.toLowerCase().includes("bandeira") ||
+            input.name.toLowerCase().includes("flag") ||
+            input.placeholder.toLowerCase().includes("bandeira") ||
+            input.placeholder.toLowerCase().includes("flag")
+          ) {
+            input.value = "Visa";
+            // TODO geraBandeira();
+          } else if (
+            input.id.toLowerCase().includes("parcelas") ||
+            input.id.toLowerCase().includes("installments") ||
+            input.name.toLowerCase().includes("parcelas") ||
+            input.name.toLowerCase().includes("installments") ||
+            input.placeholder.toLowerCase().includes("parcelas") ||
+            input.placeholder.toLowerCase().includes("installments")
+          ) {
+            input.value = 12;
+            // TODO geraParcelas();
+          } else if (
+            input.id.toLowerCase().includes("cvv") ||
+            input.name.toLowerCase().includes("cvv") ||
+            input.placeholder.toLowerCase().includes("cvv")
+          ) {
+            input.value = "123";
+            // TODO geraCVV();
+          }
+        } else if (
           input.id.toLowerCase().includes("email") ||
           input.name.toLowerCase().includes("email") ||
           input.placeholder.toLowerCase().includes("email") ||

@@ -3,6 +3,9 @@
   "name": "Fill Inputs By Type",
   "description": "Fill inputs by type",
   "version": "1.0",
+  "icons": {
+    "128": "128.png"
+  },
   "action": {
     "default_popup": "index.html"
   },

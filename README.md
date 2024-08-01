@@ -8,6 +8,5 @@ By leveraging precise identifiers such as ID, Name, Placeholder, and Type, our t
 - **Enhanced Accuracy:** Precision in identifying and populating form fields.
 - **Ideal for Complex Forms:** Perfect for handling intricate and repetitive forms with ease.
 
-[sem link ainda](https://github.com/c0nant)
-  
-**Feel free to suggest improvements with pull requests**
+**Feel free to suggest improvements with pull requests.**
+

@@ -9,5 +9,8 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": ["activeTab", "scripting", "tabs"]
+  "permissions": ["activeTab", "scripting", "tabs", "contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  }
 }

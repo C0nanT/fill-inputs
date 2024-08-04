@@ -281,235 +281,201 @@ document
         }
       });
 
+      function matchAny(str, terms) {
+        return terms.some((term) => str.toLowerCase().includes(term));
+      }
+
       inputs.forEach((input) => {
+        const id = input.id.toLowerCase();
+        const name = input.name.toLowerCase();
+        const placeholder = input.placeholder.toLowerCase();
+        const inputType = input.type.toLowerCase();
+
+        const cardTerms = ["cartao", "card"];
+        const numberTerms = ["numero", "number"];
+        const validityTerms = ["validade", "validity"];
+        const cvvTerms = ["cvv", "csc"];
+        const nameTerms = ["nome", "name"];
+        const flagTerms = ["bandeira", "flag"];
+        const installmentsTerms = ["parcelas", "installments"];
+        const monthTerms = ["mes", "month"];
+        const yearTerms = ["ano", "year"];
+        const emailTerms = ["email"];
+        const passwordTerms = ["senha", "password"];
+        const quantityTerms = [
+          "quantidade",
+          "amount",
+          "qtd",
+          "quantity",
+          "numero",
+          "number",
+        ];
+        const dateTerms = ["date", "data"];
+        const phoneTerms = ["telefone", "tel"];
+        const urlTerms = ["url", "link"];
+        const checkboxTerms = ["checkbox"];
+        const radioTerms = ["radio"];
+        const rangeTerms = ["range"];
+        const colorTerms = ["color", "cor"];
+        const zipTerms = ["cep", "zip", "postal"];
+        const cpfTerms = ["cpf"];
+        const cnpjTerms = ["cnpj"];
+        const rgTerms = ["rg"];
+        const stateTerms = ["estado", "uf", "state"];
+
         if (
-          input.id.toLowerCase().includes("cartao") ||
-          input.id.toLowerCase().includes("card") ||
-          input.name.toLowerCase().includes("cartao") ||
-          input.name.toLowerCase().includes("card") ||
-          input.placeholder.toLowerCase().includes("cartao") ||
-          input.placeholder.toLowerCase().includes("card")
+          matchAny(id, cardTerms) ||
+          matchAny(name, cardTerms) ||
+          matchAny(placeholder, cardTerms)
         ) {
           if (
-            input.id.toLowerCase().includes("numero") ||
-            input.id.toLowerCase().includes("number") ||
-            input.name.toLowerCase().includes("numero") ||
-            input.name.toLowerCase().includes("number") ||
-            input.placeholder.toLowerCase().includes("numero") ||
-            input.placeholder.toLowerCase().includes("number")
+            matchAny(id, numberTerms) ||
+            matchAny(name, numberTerms) ||
+            matchAny(placeholder, numberTerms)
           ) {
             input.value = geraNumeroCartao();
           } else if (
-            input.id.toLowerCase().includes("validade") ||
-            input.id.toLowerCase().includes("validity") ||
-            input.name.toLowerCase().includes("validade") ||
-            input.name.toLowerCase().includes("validity") ||
-            input.placeholder.toLowerCase().includes("validade") ||
-            input.placeholder.toLowerCase().includes("validity")
+            matchAny(id, validityTerms) ||
+            matchAny(name, validityTerms) ||
+            matchAny(placeholder, validityTerms)
           ) {
             input.value = geraValidade();
           } else if (
-            input.id.toLowerCase().includes("cvv") ||
-            input.name.toLowerCase().includes("cvv") ||
-            input.placeholder.toLowerCase().includes("cvv")
+            matchAny(id, cvvTerms) ||
+            matchAny(name, cvvTerms) ||
+            matchAny(placeholder, cvvTerms)
           ) {
             input.value = geraCVV();
           } else if (
-            input.id.toLowerCase().includes("nome") ||
-            input.id.toLowerCase().includes("name") ||
-            input.name.toLowerCase().includes("nome") ||
-            input.name.toLowerCase().includes("name") ||
-            input.placeholder.toLowerCase().includes("nome") ||
-            input.placeholder.toLowerCase().includes("name")
+            matchAny(id, nameTerms) ||
+            matchAny(name, nameTerms) ||
+            matchAny(placeholder, nameTerms)
           ) {
             input.value = geraNome();
           } else if (
-            input.id.toLowerCase().includes("bandeira") ||
-            input.id.toLowerCase().includes("flag") ||
-            input.name.toLowerCase().includes("bandeira") ||
-            input.name.toLowerCase().includes("flag") ||
-            input.placeholder.toLowerCase().includes("bandeira") ||
-            input.placeholder.toLowerCase().includes("flag")
+            matchAny(id, flagTerms) ||
+            matchAny(name, flagTerms) ||
+            matchAny(placeholder, flagTerms)
           ) {
             input.value = geraBandeira();
           } else if (
-            input.id.toLowerCase().includes("parcelas") ||
-            input.id.toLowerCase().includes("installments") ||
-            input.name.toLowerCase().includes("parcelas") ||
-            input.name.toLowerCase().includes("installments") ||
-            input.placeholder.toLowerCase().includes("parcelas") ||
-            input.placeholder.toLowerCase().includes("installments")
+            matchAny(id, installmentsTerms) ||
+            matchAny(name, installmentsTerms) ||
+            matchAny(placeholder, installmentsTerms)
           ) {
             input.value = geraParcelas();
           } else if (
-            input.id.toLowerCase().includes("cvv") ||
-            input.id.toLowerCase().includes("csc") ||
-            input.name.toLowerCase().includes("cvv") ||
-            input.name.toLowerCase().includes("csc") ||
-            input.placeholder.toLowerCase().includes("cvv") ||
-            input.placeholder.toLowerCase().includes("csc")
-          ) {
-            input.value = geraCVV();
-          } else if (
-            input.id.toLowerCase().includes("mes") ||
-            input.id.toLowerCase().includes("month") ||
-            input.name.toLowerCase().includes("mes") ||
-            input.name.toLowerCase().includes("month") ||
-            input.placeholder.toLowerCase().includes("mes") ||
-            input.placeholder.toLowerCase().includes("month")
+            matchAny(id, monthTerms) ||
+            matchAny(name, monthTerms) ||
+            matchAny(placeholder, monthTerms)
           ) {
             input.value = geraMes();
           } else if (
-            input.id.toLowerCase().includes("ano") ||
-            input.id.toLowerCase().includes("year") ||
-            input.name.toLowerCase().includes("ano") ||
-            input.name.toLowerCase().includes("year") ||
-            input.placeholder.toLowerCase().includes("ano") ||
-            input.placeholder.toLowerCase().includes("year")
+            matchAny(id, yearTerms) ||
+            matchAny(name, yearTerms) ||
+            matchAny(placeholder, yearTerms)
           ) {
             input.value = geraAno();
           }
         } else if (
-          input.id.toLowerCase().includes("email") ||
-          input.name.toLowerCase().includes("email") ||
-          input.placeholder.toLowerCase().includes("email") ||
-          input.type === "email"
+          matchAny(id, emailTerms) ||
+          matchAny(name, emailTerms) ||
+          matchAny(placeholder, emailTerms) ||
+          inputType === "email"
         ) {
           input.value = geraEmail();
         } else if (
-          input.id.toLowerCase().includes("senha") ||
-          input.id.toLowerCase().includes("password") ||
-          input.name.toLowerCase().includes("senha") ||
-          input.name.toLowerCase().includes("password") ||
-          input.placeholder.toLowerCase().includes("senha") ||
-          input.placeholder.toLowerCase().includes("password") ||
-          input.type === "password"
+          matchAny(id, passwordTerms) ||
+          matchAny(name, passwordTerms) ||
+          matchAny(placeholder, passwordTerms) ||
+          inputType === "password"
         ) {
           input.value = geraSenha();
         } else if (
-          input.id.toLowerCase().includes("quantidade") ||
-          input.id.toLowerCase().includes("amount") ||
-          input.id.toLowerCase().includes("qtd") ||
-          input.id.toLowerCase().includes("quantity") ||
-          input.id.toLowerCase().includes("numero") ||
-          input.id.toLowerCase().includes("number") ||
-          input.name.toLowerCase().includes("quantidade") ||
-          input.name.toLowerCase().includes("amount") ||
-          input.name.toLowerCase().includes("qtd") ||
-          input.name.toLowerCase().includes("quantity") ||
-          input.name.toLowerCase().includes("numero") ||
-          input.name.toLowerCase().includes("number") ||
-          input.placeholder.toLowerCase().includes("quantidade") ||
-          input.placeholder.toLowerCase().includes("amount") ||
-          input.placeholder.toLowerCase().includes("qtd") ||
-          input.placeholder.toLowerCase().includes("quantity") ||
-          input.placeholder.toLowerCase().includes("numero") ||
-          input.placeholder.toLowerCase().includes("number") ||
-          input.type === "number"
+          matchAny(id, quantityTerms) ||
+          matchAny(name, quantityTerms) ||
+          matchAny(placeholder, quantityTerms) ||
+          inputType === "number"
         ) {
           input.value = geraQuantidade(input.maxLength);
         } else if (
-          input.id.toLowerCase().includes("date") ||
-          input.id.toLowerCase().includes("data") ||
-          input.name.toLowerCase().includes("date") ||
-          input.name.toLowerCase().includes("data") ||
-          input.placeholder.toLowerCase().includes("date") ||
-          input.placeholder.toLowerCase().includes("data") ||
-          input.type === "date"
+          matchAny(id, dateTerms) ||
+          matchAny(name, dateTerms) ||
+          matchAny(placeholder, dateTerms) ||
+          inputType === "date"
         ) {
           input.value = geraData();
         } else if (
-          input.id.toLowerCase().includes("telefone") ||
-          input.id.toLowerCase().includes("tel") ||
-          input.name.toLowerCase().includes("telefone") ||
-          input.name.toLowerCase().includes("tel") ||
-          input.placeholder.toLowerCase().includes("telefone") ||
-          input.placeholder.toLowerCase().includes("tel") ||
-          input.type === "tel"
+          matchAny(id, phoneTerms) ||
+          matchAny(name, phoneTerms) ||
+          matchAny(placeholder, phoneTerms) ||
+          inputType === "tel"
         ) {
           input.value = geraTelefone();
         } else if (
-          input.id.toLowerCase().includes("url") ||
-          input.id.toLowerCase().includes("link") ||
-          input.name.toLowerCase().includes("url") ||
-          input.name.toLowerCase().includes("link") ||
-          input.placeholder.toLowerCase().includes("url") ||
-          input.placeholder.toLowerCase().includes("link") ||
-          input.type === "url"
+          matchAny(id, urlTerms) ||
+          matchAny(name, urlTerms) ||
+          matchAny(placeholder, urlTerms) ||
+          inputType === "url"
         ) {
           input.value = geraURL();
         } else if (
-          input.id.toLowerCase().includes("checkbox") ||
-          input.name.toLowerCase().includes("checkbox") ||
-          input.placeholder.toLowerCase().includes("checkbox") ||
-          input.type === "checkbox"
+          matchAny(id, checkboxTerms) ||
+          matchAny(name, checkboxTerms) ||
+          matchAny(placeholder, checkboxTerms) ||
+          inputType === "checkbox"
         ) {
           input.checked = true;
         } else if (
-          input.id.toLowerCase().includes("radio") ||
-          input.name.toLowerCase().includes("radio") ||
-          input.placeholder.toLowerCase().includes("radio") ||
-          input.type === "radio"
+          matchAny(id, radioTerms) ||
+          matchAny(name, radioTerms) ||
+          matchAny(placeholder, radioTerms) ||
+          inputType === "radio"
         ) {
           input.checked = true;
         } else if (
-          input.id.toLowerCase().includes("range") ||
-          input.name.toLowerCase().includes("range") ||
-          input.placeholder.toLowerCase().includes("range") ||
-          input.type === "range"
+          matchAny(id, rangeTerms) ||
+          matchAny(name, rangeTerms) ||
+          matchAny(placeholder, rangeTerms) ||
+          inputType === "range"
         ) {
           input.value = geraRange(input.min, input.max);
         } else if (
-          input.id.toLowerCase().includes("color") ||
-          input.id.toLowerCase().includes("cor") ||
-          input.name.toLowerCase().includes("color") ||
-          input.name.toLowerCase().includes("cor") ||
-          input.placeholder.toLowerCase().includes("color") ||
-          input.placeholder.toLowerCase().includes("cor") ||
-          input.type === "color"
+          matchAny(id, colorTerms) ||
+          matchAny(name, colorTerms) ||
+          matchAny(placeholder, colorTerms) ||
+          inputType === "color"
         ) {
           input.value = geraCor();
-        } else if (input.type === "text") {
+        } else if (inputType === "text") {
           if (
-            input.id.toLowerCase().includes("cep") ||
-            input.id.toLowerCase().includes("zip") ||
-            input.id.toLowerCase().includes("postal") ||
-            input.name.toLowerCase().includes("cep") ||
-            input.name.toLowerCase().includes("zip") ||
-            input.name.toLowerCase().includes("postal") ||
-            input.placeholder.toLowerCase().includes("cep") ||
-            input.placeholder.toLowerCase().includes("zip") ||
-            input.placeholder.toLowerCase().includes("postal")
+            matchAny(id, zipTerms) ||
+            matchAny(name, zipTerms) ||
+            matchAny(placeholder, zipTerms)
           ) {
             input.value = geraCEP();
           } else if (
-            input.id.toLowerCase().includes("cpf") ||
-            input.name.toLowerCase().includes("cpf") ||
-            input.placeholder.toLowerCase().includes("cpf")
+            matchAny(id, cpfTerms) ||
+            matchAny(name, cpfTerms) ||
+            matchAny(placeholder, cpfTerms)
           ) {
             input.value = geraCPF();
           } else if (
-            input.id.toLowerCase().includes("cnpj") ||
-            input.name.toLowerCase().includes("cnpj") ||
-            input.placeholder.toLowerCase().includes("cnpj")
+            matchAny(id, cnpjTerms) ||
+            matchAny(name, cnpjTerms) ||
+            matchAny(placeholder, cnpjTerms)
           ) {
             input.value = geraCNPJ();
           } else if (
-            input.id.toLowerCase().includes("rg") ||
-            input.name.toLowerCase().includes("rg") ||
-            input.placeholder.toLowerCase().includes("rg")
+            matchAny(id, rgTerms) ||
+            matchAny(name, rgTerms) ||
+            matchAny(placeholder, rgTerms)
           ) {
             input.value = geraRG();
           } else if (
-            input.id.toLowerCase().includes("estado") ||
-            input.id.toLowerCase().includes("uf") ||
-            input.id.toLowerCase().includes("state") ||
-            input.name.toLowerCase().includes("estado") ||
-            input.name.toLowerCase().includes("uf") ||
-            input.name.toLowerCase().includes("state") ||
-            input.placeholder.toLowerCase().includes("estado") ||
-            input.placeholder.toLowerCase().includes("uf") ||
-            input.placeholder.toLowerCase().includes("state")
+            matchAny(id, stateTerms) ||
+            matchAny(name, stateTerms) ||
+            matchAny(placeholder, stateTerms)
           ) {
             input.value = geraEstado();
           } else {
@@ -519,6 +485,7 @@ document
           input.value = geraTexto();
         }
       });
+
     };
 
     const [tab] = await chrome.tabs.query({

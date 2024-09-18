@@ -1,4 +1,14 @@
-const fillInputs = () => {
+let clickedEl = null;
+
+document.addEventListener(
+	"contextmenu",
+	(event) => {
+		clickedEl = event.target;
+	},
+	true,
+);
+
+const fillInputs = (parent) => {
 	function geraNumeroCartao() {
 		let numCartao = "";
 		for (let i = 0; i < 16; i++) {
@@ -257,8 +267,8 @@ const fillInputs = () => {
 		return [palavraAleatoria(), palavraAleatoria()].join(" ");
 	}
 
-	const inputs = document.querySelectorAll("input");
-	const selects = document.querySelectorAll("select");
+	const inputs = parent.querySelectorAll("input");
+	const selects = parent.querySelectorAll("select");
 
 	for (const select of selects) {
 		if (select.options.length > 0) {
@@ -476,14 +486,25 @@ const fillInputs = () => {
 	}
 };
 
-document.getElementById("meuBotao").addEventListener("click", async () => {
-	const [tab] = await chrome.tabs.query({
-		active: true,
-		currentWindow: true,
-	});
+function getFormFromElement(element) {
+	let parent = element;
+	while (parent) {
+		if (parent.tagName === "FORM") {
+			return parent;
+		}
+		parent = parent.parentElement;
+	}
+	return null;
+}
 
-	chrome.scripting.executeScript({
-		target: { tabId: tab.id },
-		function: fillInputs,
-	});
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+	if (request === "generateFormValues") {
+		const form = getFormFromElement(clickedEl);
+		if (!form) {
+			return;
+		}
+
+		fillInputs(form);
+		sendResponse();
+	}
 });

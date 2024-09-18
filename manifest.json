@@ -1,13 +1,24 @@
 {
-  "manifest_version": 3,
-  "name": "Fill Inputs By Type",
-  "description": "Fill inputs by type",
-  "version": "1.0",
-  "icons": {
-    "128": "128.png"
-  },
-  "action": {
-    "default_popup": "index.html"
-  },
-  "permissions": ["activeTab", "scripting", "tabs", "contextMenus"]
+	"manifest_version": 3,
+	"name": "Fill Inputs By Type",
+	"description": "Fill inputs by type",
+	"version": "1.0",
+	"icons": {
+		"128": "128.png"
+	},
+	"action": {
+		"default_popup": "index.html"
+	},
+	"permissions": ["activeTab", "scripting", "tabs", "contextMenus"],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"],
+			"all_frames": true,
+			"match_about_blank": true
+		}
+	]
 }

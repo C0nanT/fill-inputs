@@ -21,7 +21,7 @@ const fillInputs = () => {
 		const nomes = [
 			"Conan",
 			"Thiago",
-			"João",
+			"Joao",
 			"Silva",
 			"Maria",
 			"Souza",
